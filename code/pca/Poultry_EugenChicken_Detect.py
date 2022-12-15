@@ -35,11 +35,11 @@ model_shape = model.shape
 #------------------- Convert model images into a single flatten matrix:
 chick_matrix = []
 
-for mdl in models:
+for mdl in models: # Load models for PCA
     mdl_rot = mdl[:,:,1]  # Only Y-channel is used
     for rot in range(0,4): # Additional rotated images for more of orientations:
-        chick_matrix.append(mdl_rot.flatten()) 
-        mdl_rot = cv2.rotate(mdl_rot,cv2.ROTATE_90_CLOCKWISE)
+        chick_matrix.append(mdl_rot.flatten()) # Flatten to a single-dimentional vector
+        mdl_rot = cv2.rotate(mdl_rot,cv2.ROTATE_90_CLOCKWISE) # Rotate 90 deg. to create a new vector
  
 chick_matrix = np.array(chick_matrix)
 
